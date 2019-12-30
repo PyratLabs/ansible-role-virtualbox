@@ -9,7 +9,7 @@
   zypper_repository:
     name: virtualbox
     description: VirtualBox Repository
-    repo: http://download.virtualbox.org/virtualbox/rpm/opensuse/$releasever/$basearch
+    repo: http://download.virtualbox.org/virtualbox/rpm/opensuse/15.0/$basearch
     state: present
 
 - name: Ensure VirtualBox is installed

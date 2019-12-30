@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: virtualbox
   author: Xan Manning
-  description: Ansible role to install virtualbox on a system
+  description: Ansible role to install virtualbox on a Linux x86_64 system
   company: Pyrat Ltd.
 
   # If the issue tracker for your role is not on github, uncomment the

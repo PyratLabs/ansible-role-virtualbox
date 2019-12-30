@@ -1,0 +1,31 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+
+- name: Ensure YUM repository file exists
+  yum_repository:
+    name: virtualbox
+    description: VirtualBox Repository
+    file: virtualbox
+    baseurl: http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
+    state: present
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
+
+- name: Ensure VirtualBox is installed (YUM)
+  yum:
+    name: "VirtualBox-{{ virtualbox_version }}"
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "yum"
+
+- name: Ensure VirtualBox is installed (DNF)
+  yum:
+    name: "VirtualBox-{{ virtualbox_version }}"
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "dnf"

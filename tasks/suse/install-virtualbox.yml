@@ -1,0 +1,19 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+
+- name: Ensure Zypper repository file exists
+  zypper_repository:
+    name: virtualbox
+    description: VirtualBox Repository
+    repo: http://download.virtualbox.org/virtualbox/rpm/opensuse/$releasever/$basearch
+    state: present
+
+- name: Ensure VirtualBox is installed
+  zypper:
+    name: "VirtualBox-{{ virtualbox_version }}"
+    state: present
+    update_cache: true

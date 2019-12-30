@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    virtualbox_check_virtualization_support: true
+  roles:
+    - role: xanmanning.virtualbox

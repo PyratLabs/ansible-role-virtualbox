@@ -1,0 +1,19 @@
+---
+
+- name: Check if virtualization is supported
+  command: grep -E 'vmx|svm' /proc/cpuinfo
+  register: virtualbox_check_virtualization_support
+  failed_when: false
+  changed_when: false
+
+- name: Fail play if virtualization is not supported
+  fail:
+    msg: Virtualization is not supported on this CPU.
+  when: virtualbox_check_virtualization_support.rc > 0
+        and (virtualbox_skip_virtualization_test is not defined
+            or not virtualbox_skip_virtualization_test)
+
+- name: Fail play if architecture is not amd64
+  fail:
+    msg: This role only supports x86_64 processors.
+  when: ansible_architecture != "x86_64"

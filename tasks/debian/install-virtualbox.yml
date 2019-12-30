@@ -1,0 +1,18 @@
+---
+
+- name: Ensure VirtualBox Repository key exists
+  apt_key:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    state: present
+
+- name: Ensure APT repository file exists
+  apt_repository:
+    repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: present
+    filename: virtualbox
+
+- name: Ensure VirtualBox is installed
+  apt:
+    name: "virtualbox-{{ virtualbox_version }}"
+    state: present
+    update_cache: true

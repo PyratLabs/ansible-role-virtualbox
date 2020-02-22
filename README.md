@@ -45,7 +45,7 @@ Example playbook for installing the latest virtualbox version globally:
 
 ## License
 
-BSD
+[BSD 3-clause](LICENSE.txt)
 
 ## Author Information
 
